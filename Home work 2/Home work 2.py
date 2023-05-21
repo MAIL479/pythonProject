@@ -2,8 +2,8 @@
 variable = "Hello"
 Variable = "World"
 _var = "Python"
-var_two_words = "Two words"
-var_number = 42
+two_words = "Two words"
+var_number42 = 42
 CONSTANT = "I am constant"
 cReAtIvE_vArIaBlE = "I am creative"
 
@@ -18,13 +18,40 @@ print(10 % 3)
 print((2 + 3) * 4)  # Поєднання операцій
 
 # Оператори дії з присвоєнням
-x = 5
-x += 2
-print(x)  # Виведе 7
+a = 5
+b = 3
+a += b
+print(a)  # Вивід: 8
 
-y = 10
-y -= 3
-print(y)  # Виведе 7
+a = 5
+b = 3
+a -= b
+print(a)  # Вивід: 2
+
+a = 10
+b = 2
+a /= b
+print(a)  # Вивід: 5.0
+
+a = 3
+b = 4
+a *= b
+print(a)  # Вивід: 12
+
+a = 2
+b = 3
+a **= b
+print(a)  # Вивід: 8
+
+a = 10
+b = 3
+a //= b
+print(a)  # Вивід: 3
+
+a = 10
+b = 3
+a %= b
+print(a)  # Вивід: 1
 
 # Інструкції if/else та оператори порівняння
 a = 5
