@@ -1,89 +1,85 @@
-# 1. Функція для виведення ряду Фібоначчі за допомогою рекурсії:
+# Lambda
 
-def fibonacci_recursive(n):
-    if n <= 0:
-        return []
-    elif n == 1:
-        return [0]
-    elif n == 2:
-        return [0, 1]
-    else:
-        fib_sequence = fibonacci_recursive(n - 1)
-        fib_sequence.append(fib_sequence[-1] + fib_sequence[-2])
-        return fib_sequence
+# Лямбда функція, що друкує символ задану кількість разів
+
+
+print_char = lambda char, count=100: print(char * count)
 
 # Приклад використання
-n = 10
-fib_sequence = fibonacci_recursive(n)
-print(fib_sequence)
 
-# Виведе: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+print_char('#', 5) # Виведе '#####'
+print_char('', 10) # Виведе '*********'
+print_char('A') # Виведе 'AAAAAAAAAA' (використовується значення за замовчуванням)
 
-# 2. Функція для підсумовування чисел у заданому діапазоні:
+# Лямбда функція, що повертає більше з двох чисел
 
-def sum_range(start, end):
-    if start > end:
-        start, end = end, start
-    total = 0
-    for num in range(start, end + 1):
-        total += num
-    return total
+get_max = lambda x, y: x if x > y else y
 
 # Приклад використання
-start = 5
-end = 10
-result = sum_range(start, end)
-print(result)
 
-# Виведе: 45
+result = get_max(5, 10)
+print(result) # Виведе 10
 
-# 3. Функція для визначення пори року за номером місяця:
+# Лямбда функція, що завжди повертає 10
 
-def season(month):
-    if month in [1, 2, 12]:
-        return "зима"
-    elif month in [3, 4, 5]:
-        return "весна"
-    elif month in [6, 7, 8]:
-        return "літо"
-    elif month in [9, 10, 11]:
-        return "осінь"
-    else:
-        return "Невірний номер місяця"
+always_10 = lambda: 10
 
 # Приклад використання
-month = 7
-result = season(month)
-print(result)
 
-# Виведе: літо
+result = always_10()
+print(result) # Виведе 10
 
-# 4. Функція для фільтрації списку та виведення елементів, що менші за певне значення:
 
-def get_filtered(a):
-    filtered_list = [num for num in a if num < 5]
-    for num in filtered_list:
-        print(num)
+# Decorators
 
-# Приклад використання
-a = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
-get_filtered(a)
+def make_bold(fn):
+    def wrapper():
+        return "<b>" + fn() + "</b>"
+    return wrapper
 
-# Виведе:
-# 1
-# 1
-# 2
-# 3
+def make_italic(fn):
+    def wrapper():
+        return "<i>" + fn() + "</i>"
+    return wrapper
 
-# 5. Приклад використання циклу for та умовного оператора if:
+def make_underline(fn):
+    def wrapper():
+        return "<u>" + fn() + "</u>"
+    return wrapper
 
-for i in range(1, 11):
-    if i % 2 == 0:
-        print(i)
+@make_bold
+@make_italic
+@make_underline
+def say_hello():
+    return "hello world"
 
-# Виведе:
-# 2
-# 4
-# 6
-# 8
-# 10
+result = say_hello()
+print(result)  # Виведе "<b><i><u>hello world</u></i></b>"
+
+
+
+# List comprehension
+
+# Завдання 1
+lst1 = [44, 54, 64, 74, 104]
+lst2 = [x + 6 for x in lst1]
+print(lst2)  # Виведе [50, 60, 70, 80, 110]
+
+# Завдання 2
+lst3 = [2, 4, 6, 8, 10, 12, 14]
+list4 = [x ** 2 for x in lst3]
+print(list4)  # Виведе [4, 16, 36, 64, 100, 144, 196]
+
+# Завдання 3
+car_dict = {
+    "Sedan": 1500,
+    "SUV": 2000,
+    "Pickup": 2500,
+    "Minivan": 1600,
+    "Van": 2400,
+    "Semi": 13600,
+    "Bicycle": 7,
+    "Motorcycle": 110
+}
+list5 = [key.upper() for key, value in car_dict.items() if value <= 5000]
+print(list5)  # Виведе ['SEDAN', 'SUV', 'PICKUP', 'MINIVAN', 'VAN', 'BICYCLE', 'MOTORCYCLE']
